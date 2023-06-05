@@ -11,6 +11,18 @@ function App() {
     );
 }
 
+function ShowOriginData() {
+    const [responseData, setResponseData] = React.useState(null);
+  
+    React.useEffect(() => {
+      fetch('/origin')
+        .then(response => response.text())
+        .then(data => setResponseData(data))
+    }, []);
+  
+    return responseData
+  }
+
 function TodoListCard() {
     const [items, setItems] = React.useState(null);
 
@@ -51,9 +63,10 @@ function TodoListCard() {
 
     return (
         <React.Fragment>
+            <label>Origen de Datos:  {<ShowOriginData></ShowOriginData>} </label>
             <AddItemForm onNewItem={onNewItem} />
             {items.length === 0 && (
-                <p className="text-center">No items yet! Add one above!</p>
+                <p className="text-center">Lista de asistencia vacía</p>
             )}
             {items.map(item => (
                 <ItemDisplay
@@ -96,7 +109,7 @@ function AddItemForm({ onNewItem }) {
                     value={newItem}
                     onChange={e => setNewItem(e.target.value)}
                     type="text"
-                    placeholder="New Item"
+                    placeholder="Nuevo Asistente"
                     aria-describedby="basic-addon1"
                 />
                 <InputGroup.Append>
@@ -106,7 +119,7 @@ function AddItemForm({ onNewItem }) {
                         disabled={!newItem.length}
                         className={submitting ? 'disabled' : ''}
                     >
-                        {submitting ? 'Adding...' : 'Add Item'}
+                        {submitting ? 'Adding...' : 'Agregar a la lista'}
                     </Button>
                 </InputGroup.Append>
             </InputGroup>

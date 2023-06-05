@@ -102,6 +102,10 @@ async function removeItem(id) {
     });
 }
 
+async function getDataOrigin() {
+    return "SQLite (In LocalFile)";
+}
+
 module.exports = {
     init,
     teardown,
@@ -110,4 +114,5 @@ module.exports = {
     storeItem,
     updateItem,
     removeItem,
+    getDataOrigin
 };

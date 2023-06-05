@@ -59,6 +59,10 @@ async function teardown() {
     });
 }
 
+async function getDataOrigin() {
+    return "MySql (In External Instance)";
+}
+
 async function getItems() {
     return new Promise((acc, rej) => {
         pool.query('SELECT * FROM todo_items', (err, rows) => {
@@ -132,4 +136,5 @@ module.exports = {
     storeItem,
     updateItem,
     removeItem,
+    getDataOrigin
 };
