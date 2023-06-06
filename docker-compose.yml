@@ -7,7 +7,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - container/database:/workspaces/
+      - /container/database:/workspaces/
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
